@@ -108,6 +108,7 @@ import "./tests/LZString.mjs";
 import "./tests/Magic.mjs";
 import "./tests/Media.mjs";
 import "./tests/MIMEDecoding.mjs";
+import "./tests/MOD.mjs";
 import "./tests/Modhex.mjs";
 import "./tests/MorseCode.mjs";
 import "./tests/MS.mjs";

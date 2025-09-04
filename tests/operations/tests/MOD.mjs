@@ -1,0 +1,176 @@
+/**
+ * MOD tests
+ *
+ * @author n1474335 [n1474335@gmail.com]
+ * @copyright Crown Copyright 2016
+ * @license Apache-2.0
+ */
+import TestRegister from "../../lib/TestRegister.mjs";
+
+TestRegister.addTests([
+    {
+        name: "MOD: Basic modulo operation",
+        input: "15 4 7",
+        expectedOutput: "0 1 1",
+        recipeConfig: [
+            {
+                "op": "MOD",
+                "args": [3, "Space"]
+            }
+        ],
+    },
+    {
+        name: "MOD: Single number",
+        input: "10",
+        expectedOutput: "1",
+        recipeConfig: [
+            {
+                "op": "MOD",
+                "args": [3, "Space"]
+            }
+        ],
+    },
+    {
+        name: "MOD: Comma-separated numbers",
+        input: "15,8,23,16,5",
+        expectedOutput: "3 1 2 1 2",
+        recipeConfig: [
+            {
+                "op": "MOD",
+                "args": [7, "Comma"]
+            }
+        ],
+    },
+    {
+        name: "MOD: Line feed separated numbers",
+        input: "25\n13\n44\n7",
+        expectedOutput: "1 3 4 2",
+        recipeConfig: [
+            {
+                "op": "MOD",
+                "args": [5, "Line feed"]
+            }
+        ],
+    },
+    {
+        name: "MOD: Tab-separated numbers",
+        input: "20\t14\t8\t35",
+        expectedOutput: "2 2 2 5",
+        recipeConfig: [
+            {
+                "op": "MOD",
+                "args": [6, "Tab"]
+            }
+        ],
+    },
+    {
+        name: "MOD: Large numbers",
+        input: "123456789012345 987654321098765",
+        expectedOutput: "123456789012345 987654321098765",
+        recipeConfig: [
+            {
+                "op": "MOD",
+                "args": [1234567890123456, "Space"]
+            }
+        ],
+    },
+    {
+        name: "MOD: Mixed with non-numeric values",
+        input: "15 abc 4 def 7 xyz 23",
+        expectedOutput: "0 1 1 2",
+        recipeConfig: [
+            {
+                "op": "MOD",
+                "args": [3, "Space"]
+            }
+        ],
+    },
+    {
+        name: "MOD: Decimal numbers",
+        input: "10.5 15.7 8.2",
+        expectedOutput: "1.5 0.7 2.2",
+        recipeConfig: [
+            {
+                "op": "MOD",
+                "args": [3, "Space"]
+            }
+        ],
+    },
+    {
+        name: "MOD: Negative numbers",
+        input: "-15 -8 25 -10",
+        expectedOutput: "0 1 1 2",
+        recipeConfig: [
+            {
+                "op": "MOD",
+                "args": [3, "Space"]
+            }
+        ],
+    },
+    {
+        name: "MOD: Zero in input",
+        input: "0 5 10 15 20",
+        expectedOutput: "0 2 1 0 2",
+        recipeConfig: [
+            {
+                "op": "MOD",
+                "args": [3, "Space"]
+            }
+        ],
+    },
+    {
+        name: "MOD: Modulus of 2 (even/odd check)",
+        input: "1 2 3 4 5 6 7 8 9 10",
+        expectedOutput: "1 0 1 0 1 0 1 0 1 0",
+        recipeConfig: [
+            {
+                "op": "MOD",
+                "args": [2, "Space"]
+            }
+        ],
+    },
+    {
+        name: "MOD: Numbers with extra whitespace",
+        input: "  15   4   7  ",
+        expectedOutput: "0 1 1",
+        recipeConfig: [
+            {
+                "op": "MOD",
+                "args": [3, "Space"]
+            }
+        ],
+    },
+    {
+        name: "MOD: Empty input",
+        input: "",
+        expectedOutput: "",
+        recipeConfig: [
+            {
+                "op": "MOD",
+                "args": [3, "Space"]
+            }
+        ],
+    },
+    {
+        name: "MOD: Scientific notation",
+        input: "1e3 2e2 5e1",
+        expectedOutput: "1 2 2",
+        recipeConfig: [
+            {
+                "op": "MOD",
+                "args": [3, "Space"]
+            }
+        ],
+    },
+    {
+        name: "MOD: Floating point precision",
+        input: "10.123456789 20.987654321",
+        expectedOutput: "1.123456789 2.987654321",
+        recipeConfig: [
+            {
+                "op": "MOD",
+                "args": [3, "Space"]
+            }
+        ],
+    },
+]);
