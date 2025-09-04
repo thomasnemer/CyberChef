@@ -33,7 +33,7 @@ TestRegister.addTests([
     {
         name: "MOD: Comma-separated numbers",
         input: "15,8,23,16,5",
-        expectedOutput: "3 1 2 1 2",
+        expectedOutput: "1 1 2 2 5",
         recipeConfig: [
             {
                 "op": "MOD",
@@ -170,6 +170,51 @@ TestRegister.addTests([
             {
                 "op": "MOD",
                 "args": [3, "Space"]
+            }
+        ],
+    },
+    {
+        name: "MOD: Zero modulus error",
+        input: "15 4 7",
+        expectedError: true,
+        expectedOutput: "Modulus cannot be zero",
+        recipeConfig: [
+            {
+                "op": "MOD",
+                "args": [0, "Space"]
+            }
+        ],
+    },
+    {
+        name: "MOD: Semi-colon separated numbers",
+        input: "17;5;8;13",
+        expectedOutput: "2 0 3 3",
+        recipeConfig: [
+            {
+                "op": "MOD",
+                "args": [5, "Semi-colon"]
+            }
+        ],
+    },
+    {
+        name: "MOD: Colon separated numbers",
+        input: "25:9:14:7",
+        expectedOutput: "1 1 2 3",
+        recipeConfig: [
+            {
+                "op": "MOD",
+                "args": [4, "Colon"]
+            }
+        ],
+    },
+    {
+        name: "MOD: CRLF separated numbers",
+        input: "30\r\n18\r\n22\r\n11",
+        expectedOutput: "0 0 4 5",
+        recipeConfig: [
+            {
+                "op": "MOD",
+                "args": [6, "CRLF"]
             }
         ],
     },
